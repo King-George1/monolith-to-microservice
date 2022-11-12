@@ -5,10 +5,10 @@ data:
   AWS_REGION: us-east-1
   JWT_SECRET: testing
   POSTGRES_DB: postgres
-  POSTGRES_HOST: dev2053802db.cbqr0ykqf4yc.us-east-1.rds.amazonaws.com
-  POSTGRES_PASSWORD: dev2053802db
-  POSTGRES_USERNAME: dev2053802db
-  AWS_BUCKET: uda-2053802-dev
+  POSTGRES_HOST: dev9667245db.cpfmmjaatkzo.us-east-1.rds.amazonaws.com
+  POSTGRES_PASSWORD: dev9667245db
+  POSTGRES_USERNAME: dev9667245db
+  AWS_BUCKET: uda-9667245-dev
   URL: http://localhost:8100
 metadata:
   name: env-configmap
