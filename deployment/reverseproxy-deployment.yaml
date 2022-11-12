@@ -15,7 +15,7 @@ spec:
         app: reverseproxy
     spec:
       containers:
-        - image: kinggeorge1/reverseproxy:v7
+        - image: kinggeorge1/reverseproxy:v10
           name: reverseproxy
           imagePullPolicy: Always
           ports:
@@ -25,10 +25,10 @@ spec:
               cpu: 500m
             requests:
               cpu: 200m
-          envFrom:
-            - configMapRef:
-                name: env-configmap
-            - secretRef:
-                name: env-secret
+          # envFrom:
+          #   - configMapRef:
+          #       name: env-configmap
+          #   - secretRef:
+          #       name: env-secret
 
       restartPolicy: Always

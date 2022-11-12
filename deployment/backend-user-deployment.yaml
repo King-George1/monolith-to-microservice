@@ -16,53 +16,78 @@ spec:
     spec:
       containers:
         - name: udagram-api-user
-          image: kinggeorge1/udagram-api-user:v6
+          image: kinggeorge1/udagram-api-user:v10
           env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: postgres_password
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: postgres_username
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: jwt_secret
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: postgres_db
+            - name: POSTGRES_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: env-secret
+                  key: postgres_host
+            - name: AWS_BUCKET
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: aws_bucket
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: aws_region
+            - name: AWS_PROFILE
+              valueFrom:
+                configMapKeyRef:
+                  name: env-configmap
+                  key: aws_profile
             - name: URL
               valueFrom:
                 configMapKeyRef:
                   name: env-configmap
-                  key: URL
-            - name: POSTGRES_PASSWORD
+                  key: url
+            - name: PORT
               valueFrom:
                 configMapKeyRef:
                   name: env-configmap
-                  key: POSTGRES_PASSWORD
-            - name: POSTGRES_USERNAME
-              valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_USERNAME
-            - name: JWT_SECRET
-              valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: JWT_SECRET
-            - name: POSTGRES_DB
-              valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_DB
-            - name: POSTGRES_HOST
-              valueFrom:
-                configMapKeyRef:
-                  name: env-configmap
-                  key: POSTGRES_HOST
-            - name: aws_access_key_id
-              valueFrom:
-                secretKeyRef:
-                  name: aws-secret
-                  key: aws_access_key_id
+                  key: port
             - name: aws_secret_access_key
               valueFrom:
                 secretKeyRef:
                   name: aws-secret
                   key: aws_secret_access_key
-          envFrom:
-            - secretRef:
-                name: env-secret
-            - secretRef:
-                name: aws-secret
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: aws_secret_access_key
+          # envFrom:
+          #   - secretRef:
+          #       name: env-secret
+          #   - secretRef:
+          #       name: aws-secret
 
           ports:
             - containerPort: 8080
